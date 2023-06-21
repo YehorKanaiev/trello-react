@@ -1,0 +1,22 @@
+.list_container {
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.11), 0 6px 16px rgba(0, 0, 0, 0.13);
+  border-radius: 10px;
+
+  .cards_container {
+    margin-top: 12px;
+
+    .card {
+      display: block;
+      margin-top: 12px;
+    }
+  }
+
+  .footer {
+    margin-top: 30px;
+    
+    .add_card_button {
+      cursor: pointer;
+    }
+  }
+}

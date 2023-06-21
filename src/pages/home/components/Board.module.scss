@@ -1,0 +1,12 @@
+@import "../../../styles/color-variables";
+
+.board {
+  .board_link {
+    color: $typography;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

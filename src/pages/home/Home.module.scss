@@ -1,0 +1,28 @@
+.home_container {
+  padding: 0 25px;
+  margin: 0 auto;
+  max-width: 1200px;
+
+  .page_title {
+    text-align: center;
+  }
+
+  .boards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .create_board_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .button_content {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

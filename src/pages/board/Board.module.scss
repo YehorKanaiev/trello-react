@@ -1,0 +1,23 @@
+.board_container {
+  display: block;
+  padding: 25px;
+
+  .back_button {
+    cursor: pointer;
+  }
+
+  .lists_container {
+    display: flex;
+    margin-top: 40px;
+    align-items: flex-start;
+
+    .list {
+      margin-right: 20px;
+      width: 300px;
+    }
+    
+    .create_list_button {
+      cursor: pointer;
+    }
+  }
+}
