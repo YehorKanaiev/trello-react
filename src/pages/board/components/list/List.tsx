@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card as ICard } from '../../../../core/interfaces/card.interface';
+import { ICard } from '../../../../core/interfaces/card.interface';
 import s from './List.module.scss';
 import Card from '../card/Card';
 

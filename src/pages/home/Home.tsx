@@ -11,7 +11,7 @@ export default function Home(): React.ReactElement {
     { id: 4, title: 'курс по просуванню у соцмережах', custom: { background: 'grey' } },
   ];
   const bordComponents = boards.map((board) => (
-    <Board title={board.title} background={board.custom.background} key={board.id} />
+    <Board id={board.id} title={board.title} background={board.custom.background} key={board.id} />
   ));
 
   return (

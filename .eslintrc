@@ -35,7 +35,7 @@
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/no-parameter-properties": "off",
     "no-useless-constructor": "off",
-    "no-empty-function": "off",
+    "no-empty-function": "warn",
     "react/prop-types": "off",
     "max-classes-per-file": "off",
     "react/no-unescaped-entities": "off",
@@ -56,7 +56,7 @@
     "no-alert": "error",
     "eol-last": "error",
     "semi": "error",
-    "no-console": "error"
+    "no-console": "warn"
   },
   "overrides": []
 }
