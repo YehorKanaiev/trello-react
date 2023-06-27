@@ -1,8 +1,9 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Params, useLoaderData } from 'react-router-dom';
 import List from './components/list/List';
 import s from './Board.module.scss';
 import { IBoard } from '../../core/interfaces/board.interface';
+import { boardApi } from '../../api/board-api';
 
 export default function Board(): React.ReactElement {
   const { board } = useLoaderData() as { board: IBoard };
@@ -26,39 +27,18 @@ export default function Board(): React.ReactElement {
   );
 }
 
-const boardStub: IBoard = {
-  id: 0,
-  title: 'Моя тестова дошка',
-  lists: [
-    {
-      id: 1,
-      title: 'Плани',
-      cards: [
-        { id: 1, title: 'вимити кота' },
-        { id: 2, title: 'приготувати суп' },
-        { id: 3, title: 'сходити в магазин' },
-      ],
-    },
-    {
-      id: 2,
-      title: 'В процесі',
-      cards: [{ id: 4, title: 'подивитись серіал' }],
-    },
-    {
-      id: 3,
-      title: 'Зроблено',
-      cards: [
-        { id: 5, title: 'зробити домашку' },
-        { id: 6, title: 'вигуляти собаку' },
-      ],
-    },
-  ],
-};
+export async function boardLoader({ params }: { params: Params }): Promise<{ board: IBoard }> {
+  const { id } = params;
+  if (!id) {
+    return Promise.reject(new Error('Board id parameter missing in URL'));
+  }
 
-export async function boardLoader(): Promise<{ board: IBoard }> {
-  // export async function boardLoader({ params }: { params: Params }): Promise<{ board: IBoard }> {
-  // const board = await getBoard(params.id);
-  const board = await Promise.resolve(boardStub);
+  const idNumber = Number(id);
+  if (Number.isNaN(idNumber)) {
+    return Promise.reject(new Error('Invalid board id'));
+  }
+
+  const board = await boardApi.getBoard(idNumber);
 
   return { board };
 }
