@@ -16,13 +16,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     .button_content {
+      font-size: 56px;
+      color: white;
       cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }
