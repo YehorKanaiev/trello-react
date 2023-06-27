@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Board from './components/Board';
 import s from './Home.module.scss';
 import cardStyles from './Card.module.scss';
+import { IBoard } from '../../core/interfaces/board.interface';
+import { boardApi } from '../../api/board-api';
 
 export default function Home(): React.ReactElement {
-  const boards = [
-    { id: 1, title: 'покупки', custom: { background: 'red' } },
-    { id: 2, title: 'підготовка до весілля', custom: { background: 'green' } },
-    { id: 3, title: 'розробка інтернет-магазину', custom: { background: 'blue' } },
-    { id: 4, title: 'курс по просуванню у соцмережах', custom: { background: 'grey' } },
-  ];
+  const [boards, setBoards] = useState<IBoard[]>([]);
+
+  const fetchBoards = async (): Promise<void> => {
+    const b = await boardApi.getBoards();
+    setBoards(b);
+  };
+
+  useEffect(() => {
+    fetchBoards().catch((err) => console.error(err));
+  }, []);
+
   const bordComponents = boards.map((board) => (
-    <Board id={board.id} title={board.title} background={board.custom.background} key={board.id} />
+    <Board id={board.id} title={board.title} background={board.custom?.background ?? '#eee'} key={board.id} />
   ));
 
   return (

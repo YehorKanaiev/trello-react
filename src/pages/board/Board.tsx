@@ -27,6 +27,7 @@ export default function Board(): React.ReactElement {
 }
 
 const boardStub: IBoard = {
+  id: 0,
   title: 'Моя тестова дошка',
   lists: [
     {
