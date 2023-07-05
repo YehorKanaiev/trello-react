@@ -52,6 +52,7 @@
     "@typescript-eslint/no-explicit-any": 2,
     "import/no-named-as-default": "off",
     "import/no-named-as-default-member" : "off",
+    "no-case-declarations": "off",
     "no-param-reassign": "warn",
     "no-empty-function": "warn",
     "no-alert": "error",

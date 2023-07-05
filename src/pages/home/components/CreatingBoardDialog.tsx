@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import useInput from '../../../core/hooks/use-input';
+import s from './CreatingBoardDialog.module.scss';
 
 interface DialogProps {
   isOpen: boolean;
@@ -10,7 +11,8 @@ interface DialogProps {
 }
 
 export default function CreatingBoardDialog({ isOpen, onCancel, onClose, onSuccess }: DialogProps): React.ReactElement {
-  const titleInput = useInput<string>('');
+  const titleInput = useInput<string>('', { Required: true, MinLength: 3, MaxLength: 8 });
+  const titleInputError = titleInput.errors ? Object.values(titleInput.errors)[0] : '';
 
   const handleCreateClick = (): void => {
     onSuccess(titleInput.value);
@@ -28,10 +30,11 @@ export default function CreatingBoardDialog({ isOpen, onCancel, onClose, onSucce
           onChange={(e): void => titleInput.onChange(e.target.value)}
           onBlur={titleInput.onBlur}
         />
+        {titleInput.errors && <p className={s.validation_error}>{titleInputError}</p>}
       </DialogContent>
       <DialogActions>
         <Button onClick={onCancel}>Відмінити</Button>
-        <Button onClick={handleCreateClick} autoFocus>
+        <Button disabled={!titleInput.isValid} onClick={handleCreateClick} autoFocus>
           Створити
         </Button>
       </DialogActions>
