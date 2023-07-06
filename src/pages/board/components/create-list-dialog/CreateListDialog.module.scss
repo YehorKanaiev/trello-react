@@ -1,0 +1,14 @@
+.form {
+  width: 240px;
+  
+  .form_section {
+    display: flex;
+    flex-direction: column;
+
+    .title_input {
+      margin-top: 12px;
+      width: 100%;
+      min-height: 100px;
+    }
+  }
+}
