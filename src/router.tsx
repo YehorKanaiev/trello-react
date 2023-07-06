@@ -2,8 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import React from 'react';
 import Home from './pages/home/Home';
 import ErrorPage from './pages/error/ErrorPage';
-import Board, { boardLoader } from './pages/board/Board';
+import Board from './pages/board/Board';
 import BoardRoutes from './pages/board/board-routes';
+import { boardLoader } from './pages/board/board-loader';
 
 export const router = createBrowserRouter([
   {

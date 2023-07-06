@@ -1,9 +1,8 @@
 import React from 'react';
-import { Params, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import List from './components/list/List';
 import s from './Board.module.scss';
 import { IBoard } from '../../core/interfaces/board.interface';
-import { boardApi } from '../../api/board-api';
 
 export default function Board(): React.ReactElement {
   const { board } = useLoaderData() as { board: IBoard };
@@ -25,20 +24,4 @@ export default function Board(): React.ReactElement {
       </div>
     </div>
   );
-}
-
-export async function boardLoader({ params }: { params: Params }): Promise<{ board: IBoard }> {
-  const { id } = params;
-  if (!id) {
-    return Promise.reject(new Error('Board id parameter missing in URL'));
-  }
-
-  const idNumber = Number(id);
-  if (Number.isNaN(idNumber)) {
-    return Promise.reject(new Error('Invalid board id'));
-  }
-
-  const board = await boardApi.getBoard(idNumber);
-
-  return { board };
 }
