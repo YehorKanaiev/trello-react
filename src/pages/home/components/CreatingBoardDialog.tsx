@@ -11,7 +11,7 @@ interface DialogProps {
 }
 
 export default function CreatingBoardDialog({ isOpen, onCancel, onClose, onSuccess }: DialogProps): React.ReactElement {
-  const titleInput = useInput<string>('', { Required: true, MinLength: 3, MaxLength: 8 });
+  const titleInput = useInput<string>('', { Required: true, MinLength: 3, MaxLength: 40 });
   const titleInputError = titleInput.errors ? Object.values(titleInput.errors)[0] : '';
 
   const handleCreateClick = (): void => {
