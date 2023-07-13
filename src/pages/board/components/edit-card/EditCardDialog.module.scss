@@ -1,0 +1,23 @@
+.form {
+  .content {
+    display: flex;
+
+    .form_section {
+      display: flex;
+      flex-direction: column;
+      
+      .text_field_wrapper {
+        padding: 12px 0;
+        width: 240px;
+      }
+      
+      .text_field {
+        width: 240px;
+      }
+    }
+
+    .control_section {
+      padding: 12px 0 12px 24px;
+    }
+  }
+}

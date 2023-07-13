@@ -18,4 +18,18 @@ export const boardApi = {
   createBoard(title: string): Promise<Response> {
     return instance.post<Response>('board', { title }).then((res) => res.data);
   },
+
+  updateCard(
+    card: { id: number; title: string; description?: string },
+    listId: number,
+    boardId: number
+  ): Promise<Response> {
+    return instance
+      .put<Response>(`board/${boardId}/card/${card.id}`, {
+        title: card.title,
+        description: card.description,
+        list_id: listId,
+      })
+      .then((res) => res.data);
+  },
 };

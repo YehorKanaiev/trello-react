@@ -10,7 +10,7 @@ export default function Board(): React.ReactElement {
   const [isListCreating, setListCreating] = useState<boolean>(false);
   const lists = board.lists.map((list) => (
     <div className={s.list} key={list.id}>
-      <List title={list.title} cards={list.cards} />
+      <List id={list.id} title={list.title} cards={list.cards} />
     </div>
   ));
 
