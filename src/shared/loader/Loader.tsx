@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { LinearProgress } from '@mui/material';
-import { selectLoader } from '../../store/reducers/loader/loaderSlice';
+import { selectLoader } from '../../store/slices/loader-slice';
 import c from './Loader.module.scss';
 import { useAppSelector } from '../../store/hooks';
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { api } from '../core/constants';
 import store from '../store/store';
-import { hideLoader, showLoader } from '../store/reducers/loader/loaderSlice';
+import { hideLoader, showLoader } from '../store/slices/loader-slice';
 
 const instance = axios.create({
   baseURL: api.baseURL,
