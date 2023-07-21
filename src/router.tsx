@@ -5,6 +5,7 @@ import ErrorPage from './pages/error/ErrorPage';
 import Board from './pages/board/Board';
 import BoardRoutes from './pages/board/board-routes';
 import { boardLoader } from './pages/board/board-loader';
+import { SignIn } from './pages/sign-in/SignIn';
 
 export const router = createBrowserRouter([
   {
@@ -18,5 +19,10 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     loader: boardLoader,
     children: BoardRoutes,
+  },
+  {
+    path: '/sign-in',
+    element: <SignIn />,
+    errorElement: <ErrorPage />,
   },
 ]);

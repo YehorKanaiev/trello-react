@@ -53,7 +53,12 @@
     "import/no-named-as-default": "off",
     "import/no-named-as-default-member" : "off",
     "no-case-declarations": "off",
-    "no-param-reassign": "warn",
+    "no-param-reassign": ["warn", {
+      "props": true,
+      "ignorePropertyModificationsFor": [
+        "state"
+      ]
+    }],
     "no-empty-function": "warn",
     "@typescript-eslint/ban-ts-comment": "warn",
     "no-alert": "error",
