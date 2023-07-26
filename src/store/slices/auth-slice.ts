@@ -12,7 +12,7 @@ const initialState: AuthenticationState = {
 };
 
 export const login = createAsyncThunk(
-  'authSlice/login',
+  'authentication/login',
   async ({ email, password }: { email: string; password: string }, { dispatch }) => {
     const authResult = await authApi.login(email, password);
     dispatch(setAccessToken(authResult.token));
