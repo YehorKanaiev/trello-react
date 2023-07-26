@@ -5,13 +5,16 @@ import authApi from '../../api/auth-api';
 import { setAccessToken, setRefreshToken } from './storage-slice';
 import { showSnackbar } from './snackbar-slice';
 import { Snackbar } from '../../core/interfaces/snackbar.interface';
+import { getAuthenticationInitState } from '../../core/storage/get-authentication-init-state';
 
 export interface AuthenticationState {
   isLoggedIn: boolean;
 }
 
+const authenticationState = getAuthenticationInitState();
+
 const initialState: AuthenticationState = {
-  isLoggedIn: false,
+  isLoggedIn: !!authenticationState.accessToken && !!authenticationState.refreshToken,
 };
 
 export const login = createAsyncThunk(

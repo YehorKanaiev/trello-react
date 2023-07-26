@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { LocalStorageKeys } from '../../core/storage/local-storage-keys.enum';
+import { getAuthenticationInitState } from '../../core/storage/get-authentication-init-state';
 
 interface StorageState {
   accessToken: string | null;
   refreshToken: string | null;
 }
 
+const { accessToken, refreshToken } = getAuthenticationInitState();
+
 const initialState: StorageState = {
-  accessToken: null,
-  refreshToken: null,
+  accessToken,
+  refreshToken,
 };
 
 export const storageSlice = createSlice({
@@ -15,11 +19,11 @@ export const storageSlice = createSlice({
   initialState,
   reducers: {
     setAccessToken: (state, action: { payload: string }) => {
-      localStorage.setItem('token', action.payload);
+      localStorage.setItem(LocalStorageKeys.AccessToken, action.payload);
       state.accessToken = action.payload;
     },
     setRefreshToken: (state, action: { payload: string }) => {
-      localStorage.setItem('refresh-token', action.payload);
+      localStorage.setItem(LocalStorageKeys.RefreshToken, action.payload);
       state.refreshToken = action.payload;
     },
   },
