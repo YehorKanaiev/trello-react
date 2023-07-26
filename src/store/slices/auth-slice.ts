@@ -1,22 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 import authApi from '../../api/auth-api';
+import { setAccessToken, setRefreshToken } from './storage-slice';
 
 export interface AuthenticationState {
   isLoggedIn: boolean;
-  accessToken: string | null;
-  refreshToken: string | null;
 }
 
 const initialState: AuthenticationState = {
   isLoggedIn: false,
-  accessToken: null,
-  refreshToken: null,
 };
 
 export const login = createAsyncThunk(
   'authSlice/login',
-  async ({ email, password }: { email: string; password: string }) => authApi.login(email, password)
+  async ({ email, password }: { email: string; password: string }, { dispatch }) => {
+    const authResult = await authApi.login(email, password);
+    dispatch(setAccessToken(authResult.token));
+    dispatch(setRefreshToken(authResult.refreshToken));
+
+    return authResult;
+  }
 );
 
 export const authSlice = createSlice({
@@ -24,10 +27,8 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(login.fulfilled, (state, action) => {
+    builder.addCase(login.fulfilled, (state) => {
       state.isLoggedIn = true;
-      state.accessToken = action.payload.token;
-      state.refreshToken = action.payload.refreshToken;
     });
   },
 });
