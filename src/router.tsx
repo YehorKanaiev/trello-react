@@ -6,16 +6,25 @@ import Board from './pages/board/Board';
 import BoardRoutes from './pages/board/board-routes';
 import { boardLoader } from './pages/board/board-loader';
 import { SignIn } from './pages/sign-in/SignIn';
+import { AuthenticationGuard } from './core/guards/AuthenticationGuard';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: (
+      <AuthenticationGuard>
+        <Home />
+      </AuthenticationGuard>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: '/board/:id',
-    element: <Board />,
+    element: (
+      <AuthenticationGuard>
+        <Board />
+      </AuthenticationGuard>
+    ),
     errorElement: <ErrorPage />,
     loader: boardLoader,
     children: BoardRoutes,

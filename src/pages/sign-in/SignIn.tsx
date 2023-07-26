@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from '@mui/material';
 import { Controller, SubmitHandler, useForm, useFormState } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import c from './sign-in.module.scss';
 import { TrelloTextField } from '../../shared/TrelloTextField';
@@ -13,6 +13,8 @@ export function SignIn(): React.ReactElement {
   const { isValid, errors } = useFormState({ control });
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useAppSelector(selectAuth);
+  const location = useLocation();
+  const from = location.state?.from ?? '/';
   const navigate = useNavigate();
 
   const submitHandler: SubmitHandler<SignInForm> = (data): void => {
@@ -21,7 +23,7 @@ export function SignIn(): React.ReactElement {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/');
+      navigate(from);
     }
   }, [isLoggedIn]);
 
