@@ -3,10 +3,11 @@ import { Button } from '@mui/material';
 import { Controller, SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { TrelloTextField } from 'shared/TrelloTextField';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { login, selectAuth } from 'store/slices/auth-slice';
+import UnauthorizedWrapper from 'shared/unauthorized-wrapper/UnauthorizedWrapper';
 import c from './sign-in.module.scss';
-import { TrelloTextField } from '../../shared/TrelloTextField';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { login, selectAuth } from '../../store/slices/auth-slice';
 
 export function SignIn(): React.ReactElement {
   const { control, handleSubmit } = useForm<SignInForm>({ mode: 'onBlur' });
@@ -28,7 +29,7 @@ export function SignIn(): React.ReactElement {
   }, [isLoggedIn]);
 
   return (
-    <div className={c.sign_in_wrapper}>
+    <UnauthorizedWrapper>
       <form className={c.sign_in_form} onSubmit={handleSubmit(submitHandler)}>
         <div className={c.fields_wrapper}>
           <Controller
@@ -77,7 +78,7 @@ export function SignIn(): React.ReactElement {
           </p>
         </div>
       </form>
-    </div>
+    </UnauthorizedWrapper>
   );
 }
 

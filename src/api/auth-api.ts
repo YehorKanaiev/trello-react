@@ -1,5 +1,5 @@
+import { AuthorizationResult } from 'core/interfaces/authorization-result.interface';
 import instance from './reqest';
-import { AuthorizationResult } from '../core/interfaces/authorization-result.interface';
 
 const authApi = {
   login(email: string, password: string): Promise<AuthorizationResult> {
